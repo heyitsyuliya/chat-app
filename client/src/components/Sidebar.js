@@ -14,6 +14,12 @@ export default function Sidebar({ id }) {
   const [activeKey, setActiveKey] = useState(THREADS_KEY)
   // checking whether we have Threads tab open or not
   const threadsOpen = activeKey === THREADS_KEY
+  // modal controls, closed by default
+  const [modalOpen, setModalOpen] = useState(false)
+
+  function closeModal(){
+    setModalOpen(false)
+  }
 
   return (
 
@@ -41,19 +47,25 @@ export default function Sidebar({ id }) {
           </Tab.Pane>
         </Tab.Content>
 
-        {/* Section on the bottom of the nav that displays user ID and Create new ... button */}
+        {/* Section on the bottom of the nav that displays user ID and Create new ...  button */}
         <div className='p-2 border-top border-right small'>
           Your user ID is: <span className='text-muted'>{id}</span>
         </div>
 
-        <Button className='rounded-0'>
+        {/* clicking Create new ... button will open respective modal */}
+        <Button className='rounded-0' onClick={() => {setModalOpen(true)}}>
           Create new {threadsOpen ? 'thread' : 'contact'}
         </Button>
+
       </Tab.Container>
 
       {/* Create new ... modal that will allow the user to create either a new contact or thread */}
-      <Modal>
-        {threadsOpen ? <CreateNewThreadModal /> : <CreateNewContactModal />}
+      <Modal show={modalOpen} onHide={closeModal}>
+        {threadsOpen ?
+          <CreateNewThreadModal closeModal={closeModal} />
+          :
+          <CreateNewContactModal closeModal={closeModal} />
+        }
       </Modal>
     </div>
   )
