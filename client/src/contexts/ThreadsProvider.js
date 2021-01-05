@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useCallback } from 'react'
 import useLocalStorage from '../hooks/useLocalStorage'
 import { useContacts } from '../contexts/ContactsProvider'
 
@@ -11,9 +11,9 @@ export function useThreads(){
 export function ThreadsProvider({ id, children }) {
   // setting state
   const [threads, setThreads] = useLocalStorage('threads', [])
-  const { contacts } = useContacts()
   // selecting first conversatuion in the list by default
   const [selectedThreadIndex, setSelectedThreadIndex] = useState(0)
+  const { contacts } = useContacts()
 
   // this function adds a new contact to the list of existing Threads
   function createThread(recipients){
@@ -23,19 +23,22 @@ export function ThreadsProvider({ id, children }) {
   }
 
   // this function adds new message to the existing thread
-  function addMessageToThread({ recipients, text, sender }){
+  const addMessageToThread = useCallback(({ recipients, text, sender }) => {
+
     setThreads(existingThreads => {
 
       let madeChange = false
       const newMessage = { sender, text }
 
       const newThreads = existingThreads.map(thread => {
-        // checkign if recipients for existing threads are equal to recipients
+        // checking if recipients for existing threads are equal to recipients
         if(checkIfArraysEqual(thread.recipients, recipients)){
           madeChange = true
-          return { ...thread, messages: [thread.messages, newMessage]}
+          return {
+            ...thread,
+            messages: [...thread.messages, newMessage]
+          }
         }
-
         return thread
       })
 
@@ -49,13 +52,15 @@ export function ThreadsProvider({ id, children }) {
         return [...existingThreads, { recipients, messages: [newMessage]}]
       }
     })
-  }
+  }, [setThreads])
 
   function sendMessage(recipients, text){
     addMessageToThread({ recipients, text, sender: id })
   }
 
+  // this function formats the threads to display the names of the people in the thread
   const formattedThreads = threads.map((thread, index) => {
+
     const recipients = thread.recipients.map(recipient => {
       const contact = contacts.find(contact => {
         return contact.id === recipient
@@ -66,10 +71,23 @@ export function ThreadsProvider({ id, children }) {
       return { id: recipient, name }
     })
 
+    // formatting messages to display sender's name
+    const messages = thread.messages.map(message => {
+      const contact = contacts.find(contact => {
+        return contact.id === message.sender
+      })
+
+      const name = (contact && contact.name) || message.sender
+
+      // messages sent from me
+      const fromMe = id === message.sender
+      return { ...message, senderName: name, fromMe }
+    })
+
     // checking if the thread was selected
     const selected = index === selectedThreadIndex
 
-    return { ...thread, recipients, selected }
+    return { ...thread, messages, recipients, selected }
   })
 
   // what will be returned as formatted thread
