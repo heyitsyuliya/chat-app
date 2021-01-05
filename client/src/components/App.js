@@ -11,7 +11,7 @@ function App() {
 
   const dashboard = (
     <ContactsProvider>
-      <ThreadsProvider>
+      <ThreadsProvider id={id}>
         <Dashboard id={id} />
       </ThreadsProvider>
     </ContactsProvider>

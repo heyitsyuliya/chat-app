@@ -8,7 +8,7 @@ export function useThreads(){
   return useContext(ThreadsContext)
 }
 
-export function ThreadsProvider({ children }) {
+export function ThreadsProvider({ id, children }) {
   // setting state
   const [threads, setThreads] = useLocalStorage('threads', [])
   const { contacts } = useContacts()
@@ -20,6 +20,39 @@ export function ThreadsProvider({ children }) {
     setThreads(existingThreads => {
       return [...existingThreads, { recipients, messages: [] }]
     })
+  }
+
+  // this function adds new message to the existing thread
+  function addMessageToThread({ recipients, text, sender }){
+    setThreads(existingThreads => {
+
+      let madeChange = false
+      const newMessage = { sender, text }
+
+      const newThreads = existingThreads.map(thread => {
+        // checkign if recipients for existing threads are equal to recipients
+        if(checkIfArraysEqual(thread.recipients, recipients)){
+          madeChange = true
+          return { ...thread, messages: [thread.messages, newMessage]}
+        }
+
+        return thread
+      })
+
+      // checking whether thread was created or not
+      if (madeChange){
+        return newThreads
+      }
+
+      else {
+        // adding new message to the thread
+        return [...existingThreads, { recipients, messages: [newMessage]}]
+      }
+    })
+  }
+
+  function sendMessage(recipients, text){
+    addMessageToThread({ recipients, text, sender: id })
   }
 
   const formattedThreads = threads.map((thread, index) => {
@@ -44,6 +77,7 @@ export function ThreadsProvider({ children }) {
     threads: formattedThreads,
     selectedThread: formattedThreads[selectedThreadIndex],
     selectThreadIndex: setSelectedThreadIndex,
+    sendMessage,
     createThread
   }
 
@@ -52,4 +86,17 @@ export function ThreadsProvider({ children }) {
       {children}
     </ThreadsContext.Provider>
   )
+}
+
+function checkIfArraysEqual(arr1, arr2){
+  if (arr1.length !== arr2.length){
+    return false
+  }
+
+  arr1.sort()
+  arr2.sort()
+
+  return arr1.every((element, index) => {
+    return element === arr2[index]
+  })
 }
