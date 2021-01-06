@@ -1,29 +1,34 @@
 ### All you need to know to start the app :)
 
-To start the app, first cd into /client and run npm start
-To start the dev server, cd into /server and run npm run dev-start to start the dev server
+- Demo can be found [here]()
+- To start the app, first cd into `/client` and run `npm start`
+- To start the dev server, cd into `/server` and run `npm run dev-start` to start the dev server
+
 ### About the app
 This is a very simple messaging app that is build with following tech stack:
 - React
-- React Hooks to manage state
+- React Hooks
 - Bootstrap
 - Socket.io
 
-User Stories for the app:
-UC1 - As a user I want to be able to log into the app if I have my ID created
-UC2 - As a user I want to sign up if I don't have an ID created
-UC3 - As a user I want to be able to create a Thread
-UC4 - As a user I want to be able to create a Contact
-UC5 - As a user I want to be able to view Contacts, Threads and the chat area
-UC6 - As a user I want to be able to send and receive messages
+All messages and contacts are stored in local storage.
 
-To do:
-[] - Make UI improvements: dark background, rounder message bubbles, change send button and message field
-[] - Add ability to delete threads
-[] - Play a sound when sending and receiving messages
+### User Stories:
+- As a user I want to be able to log into the app if I have my ID created
+- As a user I want to sign up if I don't have an ID created
+- As a user I want to be able to create a Thread
+- As a user I want to be able to create a Contact
+- As a user I want to be able to view Contacts, Threads and the chat area
+- As a user I want to be able to send and receive messages
 
-You probably won't need this, but I'll just keep this here anyway
-👇👇👇👇👇
+### To do:
+- [ ] Try implementing styled components?
+- [ ] Make UI improvements: dark background, rounder message bubbles, change send button and message field
+- [ ] Add ability to delete threads
+- [ ] Play a sound when sending and receiving messages
+
+👇👇👇You probably won't need this, but I'll just keep this here anyway👇👇👇
+
 ### `yarn start`
 
 Runs the app in the development mode.\
