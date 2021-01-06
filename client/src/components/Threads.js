@@ -6,13 +6,13 @@ export default function Threads() {
 
   const { threads, selectThreadIndex } = useThreads()
   // will be falsey if we don'ty have any contacts created
-  const threadsCount = threads[1]
-  const emptyState = (
-    <p>Looks like you don't have any threads created 🤷🏻</p>
-  )
+  // const threadsCount = threads[0]
+  // const emptyState = (
+  //   <div className='empty-state'>Create a thread below to start chatting! <i className="fas fa-comments"></i></div>
+  // )
 
   return (
-    threadsCount ?
+    // threadsCount ?
     <ListGroup variant='flush'>
       {threads.map((thread, index) => (
         <ListGroup.Item
@@ -26,7 +26,7 @@ export default function Threads() {
       ))
       }
     </ListGroup>
-    :
-    emptyState
+    // :
+    // emptyState
   )
 }

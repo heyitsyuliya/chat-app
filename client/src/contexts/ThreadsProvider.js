@@ -1,6 +1,7 @@
-import React, { useContext, useState, useCallback } from 'react'
+import React, { useContext, useState, useCallback, useEffect } from 'react'
 import useLocalStorage from '../hooks/useLocalStorage'
 import { useContacts } from '../contexts/ContactsProvider'
+import { useSocket } from './SocketProvider'
 
 const ThreadsContext = React.createContext()
 
@@ -14,6 +15,7 @@ export function ThreadsProvider({ id, children }) {
   // selecting first conversatuion in the list by default
   const [selectedThreadIndex, setSelectedThreadIndex] = useState(0)
   const { contacts } = useContacts()
+  const socket = useSocket()
 
   // this function adds a new contact to the list of existing Threads
   function createThread(recipients){
@@ -54,7 +56,20 @@ export function ThreadsProvider({ id, children }) {
     })
   }, [setThreads])
 
+
+  // to receive the message without duplication, we need to call useEffect so that
+  // the event is only sent once when change occurs
+  useEffect(() => {
+    // check if our socket exists
+    if (socket == null) return
+
+    socket.on('receive-message', addMessageToThread)
+    // removing that event listener to avoid duplication
+    return () => socket.off('receive-message')
+  }, [socket, addMessageToThread])
+
   function sendMessage(recipients, text){
+    socket.emit('send-message', { recipients, text })
     addMessageToThread({ recipients, text, sender: id })
   }
 

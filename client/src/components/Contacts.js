@@ -6,7 +6,7 @@ export default function Contacts() {
 
   const { contacts } = useContacts()
   // will be falsey if we don'ty have any contacts created
-  const contactsCount = contacts[1];
+  const contactsCount = contacts[0];
   const emptyState = (
     <p>Looks like you don't have any contacts created 🤷🏻</p>
   )

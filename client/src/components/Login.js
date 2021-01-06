@@ -20,7 +20,7 @@ export default function Login({ onSubmittedId }) {
     <Container className='align-items-center d-flex' style={{height: '100vh'}}>
       <Form onSubmit={handleSubmit} className='w-100'>
         <Form.Group>
-          <Form.Label>Enter your user ID</Form.Label>
+          <Form.Label>Enter your user ID to log in or Sign Up</Form.Label>
           <Form.Control type='text' ref={idRef} required></Form.Control>
         </Form.Group>
         <Button type='submit' className='mr-2'>Log In</Button>
