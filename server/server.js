@@ -5,7 +5,7 @@ const io = require('socket.io')(5000, {
   }
 })
 
-console.log('Server started on http://localhost:5000/')
+console.log('Dev server started on http://localhost:5000/')
 
 io.on('connection', socket => {
   // creating the room number based on user's ID

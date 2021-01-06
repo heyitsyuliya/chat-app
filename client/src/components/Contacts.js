@@ -15,7 +15,7 @@ export default function Contacts() {
     contactsCount ?
     <ListGroup variant='flush'>
       {contacts.map(contact => (
-        <ListGroup.Item key={contact.id}>{contact.name}</ListGroup.Item>
+        <ListGroup.Item key={contact.id}><i className="far fa-user-circle"></i> {contact.name}</ListGroup.Item>
       ))
       }
     </ListGroup>
