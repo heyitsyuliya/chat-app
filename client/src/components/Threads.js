@@ -20,6 +20,7 @@ export default function Threads() {
         action
         onClick={() => selectThreadIndex(index)}
         active={thread.selected}
+        className="border-bottom"
         >
           <i className="fas fa-comments"></i> {thread.recipients.map(recipient => recipient.name).join(', ')}
         </ListGroup.Item>

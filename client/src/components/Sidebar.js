@@ -49,7 +49,7 @@ export default function Sidebar({ id }) {
 
         {/* Section on the bottom of the nav that displays user ID and Create new ...  button */}
         <div className='p-2 border-top border-right small'>
-          Your user ID is: <span className='text-muted'>{id}</span>
+          My user ID: <span className='text-muted'>{id}</span>
         </div>
 
         {/* clicking Create new ... button will open respective modal */}
