@@ -30,7 +30,7 @@ All messages and contacts are stored in local storage.
   - [x] store that ID in local storage
   - [x] pass that thread into deleteThread function
   - [x] find the item in local storage
-  - [ ] delete the item 
+  - [x] delete the item
 - [ ] Play a sound when sending and receiving messages
 
 👇👇👇You probably won't need this, but I'll just keep this here anyway👇👇👇

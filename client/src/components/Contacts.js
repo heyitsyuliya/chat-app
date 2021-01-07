@@ -17,9 +17,12 @@ export default function Contacts() {
       {contacts.map(contact => (
         <ListGroup.Item
           key={contact.id}
-          className="border-bottom"
+          className="border-bottom d-flex justify-content-left"
         >
-          <i className="far fa-user-circle"></i> {contact.name}
+          <div>
+          <i className="far fa-user-circle pr-2"></i>
+          {contact.name}
+          </div>
         </ListGroup.Item>
       ))
       }

@@ -26,10 +26,13 @@ export default function Threads() {
         action
         onClick={() => selectThreadIndex(index)}
         active={thread.selected}
-        className="border-bottom"
+        className="border-bottom d-flex justify-content-between"
         >
-          <i className="fas fa-comments"></i>
-          {thread.recipients.map(recipient => recipient.name).join(', ')}
+          <div>
+            <i className="fas fa-comments pr-2"></i>
+            {thread.recipients.map(recipient => recipient.name).join(', ')}
+          </div>
+
           <i className="far fa-trash-alt" onClick={() => handleDeletion(thread)}></i>
         </ListGroup.Item>
       ))
