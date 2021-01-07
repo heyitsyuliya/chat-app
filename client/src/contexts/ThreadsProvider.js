@@ -2,6 +2,7 @@ import React, { useContext, useState, useCallback, useEffect } from 'react'
 import useLocalStorage from '../hooks/useLocalStorage'
 import { useContacts } from '../contexts/ContactsProvider'
 import { useSocket } from './SocketProvider'
+import { v4 as uuidV4 } from 'uuid'
 
 const ThreadsContext = React.createContext()
 
@@ -17,10 +18,20 @@ export function ThreadsProvider({ id, children }) {
   const { contacts } = useContacts()
   const socket = useSocket()
 
-  // this function adds a new contact to the list of existing Threads
+  // this function adds a new thread to the list of existing Threads
   function createThread(recipients){
     setThreads(existingThreads => {
-      return [...existingThreads, { recipients, messages: [] }]
+      return [...existingThreads, { id: uuidV4(), recipients, messages: [] }]
+    })
+  }
+
+  // this function deletes a thread
+  function deleteThread(threadId){
+
+    const updatedThreads = JSON.parse(localStorage.getItem('chat-app-threads')).filter(thread => thread.id !== threadId)
+
+    setThreads(existingThreads => {
+      return [...updatedThreads]
     })
   }
 
@@ -111,7 +122,8 @@ export function ThreadsProvider({ id, children }) {
     selectedThread: formattedThreads[selectedThreadIndex],
     selectThreadIndex: setSelectedThreadIndex,
     sendMessage,
-    createThread
+    createThread,
+    deleteThread
   }
 
   return (

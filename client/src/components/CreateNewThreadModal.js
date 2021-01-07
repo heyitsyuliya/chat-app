@@ -39,7 +39,7 @@ export default function CreateNewThreadModal({ closeModal }) {
         <Form onSubmit={handleSubmit}>
 
           {contacts.map(contact => (
-            <Form.Group constrolId={contact.id} key={contact.id}>
+            <Form.Group contactId={contact.id} key={contact.id}>
               <Form.Check
                 type='checkbox'
                 value={selectedContactIds.includes(contact.id)}

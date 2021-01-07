@@ -24,7 +24,13 @@ All messages and contacts are stored in local storage.
 ### To do:
 - [ ] Try implementing styled components?
 - [ ] Make UI improvements: dark background, rounder message bubbles, change send button and message field
+- [ ] Implemet a button that clears local storage
 - [ ] Add ability to delete threads
+  - [x] When creating a thread, Assign an ID for that thread
+  - [x] store that ID in local storage
+  - [x] pass that thread into deleteThread function
+  - [x] find the item in local storage
+  - [ ] delete the item 
 - [ ] Play a sound when sending and receiving messages
 
 👇👇👇You probably won't need this, but I'll just keep this here anyway👇👇👇
