@@ -18,8 +18,22 @@ export function ContactsProvider({ children }) {
     })
   }
 
+  function deleteContact(contactId){
+    const updatedContacts = JSON.parse(localStorage.getItem('chat-app-contacts')).filter(contact => contact.id !== contactId)
+
+    setContacts(existingContacts => {
+      return [...updatedContacts]
+    })
+  }
+
+  const value = {
+    contacts,
+    createContact,
+    deleteContact
+  }
+
   return (
-    <ContactsContext.Provider value={{contacts, createContact}}>
+    <ContactsContext.Provider value={value}>
       {children}
     </ContactsContext.Provider>
   )

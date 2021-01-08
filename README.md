@@ -33,7 +33,7 @@ All messages and contacts are stored in local storage.
   - [x] find the item in local storage
   - [x] delete the item
 - [ ] Implement the ability for users to delete contacts
-- [ ] Generate phone number instead of User ID
+- [ ] Generate phone number instead of UUID
   - [ ] Fix Login page to enter phone number instead
 - [ ] Play a sound when sending and receiving messages
 
