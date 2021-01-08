@@ -1,6 +1,6 @@
 ### All you need to know to start the app :)
 
-- Demo can be found [here]()
+- Demo can be found [here](https://youtu.be/_k7QrQskCQc)
 - To start the app, first cd into `/client` and run `npm start`
 - To start the dev server, cd into `/server` and run `npm run dev-start` to start the dev server
 
