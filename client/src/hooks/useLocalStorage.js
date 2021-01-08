@@ -5,7 +5,7 @@ const PREFIX = 'chat-app-'
 
 // key will be the information we need to store in local storage
 // initialValue is what is being passsed as state
-export default function useLocalStorage(key, initialValue) {
+export default function useLocalStorage(key, initialValue = null) {
 
   const prefixedKey = PREFIX + key
 

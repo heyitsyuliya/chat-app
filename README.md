@@ -35,7 +35,7 @@ All messages and contacts are stored in local storage.
 - [ ] Play a sound when sending and receiving messages
 
 ### Bugs:
-- [ ] After I clear the cache userId key is getting set to undefined and that breaks the app and React displays a very mean error. To fix this, I need to clear local storage for my app
+- [x] After I clear the cache userId key is getting set to undefined and that breaks the app and React displays a very mean error. To fix this, I need to clear local storage for my app. UserID is created instantly after the app is rebuilt, if I refresh on login page, the app crashes
 
 👇👇👇You probably won't need this, but I'll just keep this here anyway👇👇👇
 

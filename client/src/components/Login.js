@@ -49,7 +49,6 @@ export default function Login({ onSubmittedId }) {
         </Form.Group>
 
         <Button type='submit' className='mr-2'>Log In</Button>
-        {/* <Button onClick={createNewUserId} variant='success'>Sign Up</Button> */}
 
         <OverlayTrigger trigger="hover" placement="right" overlay={popover}>
           <Button onClick={createNewUserId} variant='success'>Sign Up</Button>
