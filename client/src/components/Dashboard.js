@@ -13,6 +13,5 @@ export default function Dashboard({ id }) {
       <Sidebar id={id}/>
       {selectedThread && <OpenThread />}
     </div>
-
   )
 }

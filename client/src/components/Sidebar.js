@@ -12,7 +12,7 @@ const SETTINGS_KEY = 'settings'
 export default function Sidebar({ id }) {
 
   // setting threads tab to be selected by default
-  const [activeKey, setActiveKey] = useState(THREADS_KEY)
+  const [activeKey, setActiveKey] = useState(CONTACTS_KEY)
   // checking whether we have Threads tab open or not
   const threadsOpen = activeKey === THREADS_KEY
   // modal controls, closed by default
@@ -61,11 +61,16 @@ export default function Sidebar({ id }) {
               Clicking the button below will erase all data associated with Chat App, including all threads, contacts and user IDs.
             </Card>
             <Button className='rounded btn-warning' onClick={() => {
-              localStorage.removeItem('chat-app-threads')
-              localStorage.removeItem('chat-app-contacts')
-              localStorage.removeItem('chat-app-userId')
-              // I had to... :/
-              window.location.reload(true);
+
+              try {
+                localStorage.clear()
+                // I had to... :/
+                window.location.reload(true);
+              }
+
+              catch (error) {
+                console.error(error)
+              }
             }}>
               Clear local storage
             </Button>

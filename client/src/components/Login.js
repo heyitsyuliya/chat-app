@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Button, Container, Form } from 'react-bootstrap'
+import { Button, Container, Form, InputGroup, Popover, OverlayTrigger } from 'react-bootstrap'
 import { v4 as uuidV4 } from 'uuid'
 
 export default function Login({ onSubmittedId }) {
@@ -16,15 +16,44 @@ export default function Login({ onSubmittedId }) {
     onSubmittedId(uuidV4())
   }
 
+  const popover = (
+    <Popover>
+      <Popover.Title as='h3'>Whoa, that's a title!</Popover.Title>
+
+      <Popover.Content>
+        Click this button, <strong>quick</strong>!
+      </Popover.Content>
+    </Popover>
+  )
+
   return (
     <Container className='align-items-center d-flex' style={{height: '100vh'}}>
+
       <Form onSubmit={handleSubmit} className='w-100'>
+
         <Form.Group>
-          <Form.Label>Enter your user ID to log in or Sign Up</Form.Label>
-          <Form.Control type='text' ref={idRef} required></Form.Control>
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text>👾</InputGroup.Text>
+            </InputGroup.Prepend>
+
+            <Form.Control
+              type='text'
+              placeholder="Enter your user ID"
+              ref={idRef}
+              required
+              >
+            </Form.Control>
+
+          </InputGroup>
         </Form.Group>
+
         <Button type='submit' className='mr-2'>Log In</Button>
-        <Button onClick={createNewUserId} variant='secondary'>Sign Up</Button>
+        {/* <Button onClick={createNewUserId} variant='success'>Sign Up</Button> */}
+
+        <OverlayTrigger trigger="hover" placement="right" overlay={popover}>
+          <Button onClick={createNewUserId} variant='success'>Sign Up</Button>
+        </OverlayTrigger>
       </Form>
     </Container>
   )

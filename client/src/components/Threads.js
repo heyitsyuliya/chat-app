@@ -8,7 +8,7 @@ export default function Threads() {
   // will be falsey if we don'ty have any contacts created
   const threadsCount = threads[0]
   const emptyState = (
-    <Card className='empty-state p-3 m-3'>Create a thread below to start chatting! <i className="fas fa-comments"></i></Card>
+    <Card className='empty-state p-3 m-3'>Create a thread below to start chatting! 💬</Card>
   )
 
   // this function calls provider function that is responsible for delition

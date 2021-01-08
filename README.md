@@ -23,11 +23,9 @@ All messages and contacts are stored in local storage.
 - As a user I want to be able to delete threads
 
 ### To do:
-- [ ] Try implementing styled components?
-- [ ] Make UI improvements: dark background, rounder message bubbles, change send button and message field
-- [ ] Implemet a button that clears local storage
+- [x] Implement a button that clears local storage
   - [x] Implement 'Clear local storage' UI button
-  - [ ] Make sure that button clears all local storage for contacts, threads and users
+  - [x] Make sure that button clears all local storage for contacts, threads and users
 - [x] Add ability to delete threads
   - [x] When creating a thread, Assign an ID for that thread
   - [x] store that ID in local storage
@@ -35,6 +33,9 @@ All messages and contacts are stored in local storage.
   - [x] find the item in local storage
   - [x] delete the item
 - [ ] Play a sound when sending and receiving messages
+
+### Bugs:
+- [ ] After I clear the cache userId key is getting set to undefined and that breaks the app and React displays a very mean error. To fix this, I need to clear local storage for my app
 
 👇👇👇You probably won't need this, but I'll just keep this here anyway👇👇👇
 
