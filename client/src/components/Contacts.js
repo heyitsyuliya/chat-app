@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListGroup } from 'react-bootstrap'
+import { ListGroup, Card } from 'react-bootstrap'
 import { useContacts } from '../contexts/ContactsProvider'
 
 export default function Contacts() {
@@ -8,7 +8,7 @@ export default function Contacts() {
   // will be falsey if we don'ty have any contacts created
   const contactsCount = contacts[0]
   const emptyState = (
-    <p>Looks like you don't have any contacts created 🤷🏻</p>
+    <Card className='p-3 m-3'>Looks like you don't have any contacts created 🤷🏻</Card>
   );
 
   return (

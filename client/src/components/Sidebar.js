@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Tab, Nav, Button, Modal } from 'react-bootstrap'
+import { Tab, Nav, Button, Modal, Card } from 'react-bootstrap'
 import Contacts from './Contacts'
 import CreateNewContactModal from './CreateNewContactModal'
 import CreateNewThreadModal from './CreateNewThreadModal'
@@ -7,6 +7,7 @@ import Threads from './Threads'
 
 const THREADS_KEY = 'threads'
 const CONTACTS_KEY = 'contacts'
+const SETTINGS_KEY = 'settings'
 
 export default function Sidebar({ id }) {
 
@@ -23,7 +24,7 @@ export default function Sidebar({ id }) {
 
   return (
 
-    <div style={{ width: '250px'}} className='d-flex flex-column'>
+    <div style={{ width: '250px', fontSize: '12px'}} className='d-flex flex-column'>
 
       <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
 
@@ -35,6 +36,10 @@ export default function Sidebar({ id }) {
           <Nav.Item>
             <Nav.Link eventKey={CONTACTS_KEY}>Contacts</Nav.Link>
           </Nav.Item>
+
+          <Nav.Item>
+            <Nav.Link eventKey={SETTINGS_KEY}><i className="fas fa-cog"></i></Nav.Link>
+          </Nav.Item>
         </Nav>
 
         <Tab.Content className='border-right overflow-auto flex-grow-1'>
@@ -45,12 +50,27 @@ export default function Sidebar({ id }) {
           <Tab.Pane eventKey={CONTACTS_KEY}>
             <Contacts />
           </Tab.Pane>
-        </Tab.Content>
 
-        {/* Section on the bottom of the nav that displays user ID and Create new ...  button */}
-        <div className='p-2 border-top border-right small'>
-          My user ID: <span className='text-muted'>{id}</span>
-        </div>
+          <Tab.Pane eventKey={SETTINGS_KEY} className='d-flex flex-column align-items-center'>
+            {/* Section on the bottom of the nav that displays user ID and Create new ...  button */}
+            <Card className='p-2 m-2 small'>
+              My user ID: <span className='text-muted'>{id}</span>
+            </Card>
+
+            <Card className='p-3 m-3 text-muted'>
+              Clicking the button below will erase all data associated with Chat App, including all threads, contacts and user IDs.
+            </Card>
+            <Button className='rounded btn-warning' onClick={() => {
+              localStorage.removeItem('chat-app-threads')
+              localStorage.removeItem('chat-app-contacts')
+              localStorage.removeItem('chat-app-userId')
+              // I had to... :/
+              window.location.reload(true);
+            }}>
+              Clear local storage
+            </Button>
+          </Tab.Pane>
+        </Tab.Content>
 
         {/* clicking Create new ... button will open respective modal */}
         <Button className='rounded-0' onClick={() => {setModalOpen(true)}}>

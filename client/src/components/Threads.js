@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListGroup } from 'react-bootstrap'
+import { Card, ListGroup } from 'react-bootstrap'
 import { useThreads } from '../contexts/ThreadsProvider'
 
 export default function Threads() {
@@ -8,7 +8,7 @@ export default function Threads() {
   // will be falsey if we don'ty have any contacts created
   const threadsCount = threads[0]
   const emptyState = (
-    <div className='empty-state'>Create a thread below to start chatting! <i className="fas fa-comments"></i></div>
+    <Card className='empty-state p-3 m-3'>Create a thread below to start chatting! <i className="fas fa-comments"></i></Card>
   )
 
   // this function calls provider function that is responsible for delition
