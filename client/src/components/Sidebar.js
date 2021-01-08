@@ -12,11 +12,17 @@ const SETTINGS_KEY = 'settings'
 export default function Sidebar({ id }) {
 
   // setting threads tab to be selected by default
-  const [activeKey, setActiveKey] = useState(CONTACTS_KEY)
+  const [activeKey, setActiveKey] = useState(THREADS_KEY)
   // checking whether we have Threads tab open or not
   const threadsOpen = activeKey === THREADS_KEY
   // modal controls, closed by default
   const [modalOpen, setModalOpen] = useState(false)
+
+  const createNewBtn = (
+    <Button className='rounded-0' onClick={() => {setModalOpen(true)}}>
+      Create new {threadsOpen ? 'thread' : 'contact'}
+    </Button>
+  )
 
   function closeModal(){
     setModalOpen(false)
@@ -53,7 +59,7 @@ export default function Sidebar({ id }) {
 
           <Tab.Pane eventKey={SETTINGS_KEY} className='d-flex flex-column align-items-center'>
             {/* Section on the bottom of the nav that displays user ID and Create new ...  button */}
-            <Card className='p-2 m-2 small'>
+            <Card className='p-2 mt-3 small'>
               My user ID: <span className='text-muted'>{id}</span>
             </Card>
 
@@ -77,10 +83,10 @@ export default function Sidebar({ id }) {
           </Tab.Pane>
         </Tab.Content>
 
-        {/* clicking Create new ... button will open respective modal */}
-        <Button className='rounded-0' onClick={() => {setModalOpen(true)}}>
-          Create new {threadsOpen ? 'thread' : 'contact'}
-        </Button>
+        {/* clicking Create new ... button will open respective modal, and it will only show up on threads and contacts menu */}
+        <>
+        {activeKey !== SETTINGS_KEY ? createNewBtn : <></>}
+        </>
 
       </Tab.Container>
 

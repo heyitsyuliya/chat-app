@@ -32,10 +32,14 @@ All messages and contacts are stored in local storage.
   - [x] pass that thread into deleteThread function
   - [x] find the item in local storage
   - [x] delete the item
+- [ ] Implement the ability for users to delete contacts
+- [ ] Generate phone number instead of User ID
+  - [ ] Fix Login page to enter phone number instead
 - [ ] Play a sound when sending and receiving messages
 
 ### Bugs:
 - [x] After I clear the cache userId key is getting set to undefined and that breaks the app and React displays a very mean error. To fix this, I need to clear local storage for my app. UserID is created instantly after the app is rebuilt, if I refresh on login page, the app crashes
+- [x] Create new contact button is still showing up on settings page
 
 👇👇👇You probably won't need this, but I'll just keep this here anyway👇👇👇
 
